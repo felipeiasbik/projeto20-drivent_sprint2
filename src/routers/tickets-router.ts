@@ -5,7 +5,7 @@ import { signInSchema } from "../schemas";
 
 const ticketRouter = Router();
 
-ticketRouter.get("/types", authenticateToken, validateBody(signInSchema), getTicketsTypes);
+ticketRouter.get("/types", authenticateToken, getTicketsTypes);
 ticketRouter.get("/", authenticateToken, getTickets);
 ticketRouter.post("/", authenticateToken, createTicket);
 

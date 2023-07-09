@@ -61,6 +61,17 @@ async function createOrUpdateEnrollmentWithAddress(params: CreateOrUpdateEnrollm
   await addressRepository.upsert(newEnrollment.id, address, address);
 }
 
+async function getEnrollmentUser(userId: number){
+  const userEnrollment = await enrollmentRepository.getEnrollmentUser(userId);
+  if (!userEnrollment) {
+    throw {
+      name: "NotFoundError",
+      message: "Enrollment Not Found!",
+    };
+  }
+  return userEnrollment;
+}
+
 function getAddressForUpsert(address: CreateAddressParams) {
   return {
     ...address,
@@ -76,6 +87,7 @@ const enrollmentsService = {
   getOneWithAddressByUserId,
   createOrUpdateEnrollmentWithAddress,
   getAddressFromCEP,
+  getEnrollmentUser
 };
 
 export default enrollmentsService;

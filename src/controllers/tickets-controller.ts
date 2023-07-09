@@ -9,9 +9,14 @@ export async function getTicketsTypes(req: AuthenticatedRequest, res: Response) 
 }
 
 export async function getTickets(req: AuthenticatedRequest, res: Response) {
-    res.status(httpStatus.OK).send("okokok")
+    const userId = req.userId;
+    const ticket = await ticketsService.getTickets(userId);
+    res.status(httpStatus.OK).send(ticket);
 }
 
 export async function createTicket(req: AuthenticatedRequest, res: Response) {
-    res.status(httpStatus.OK).send("okokokok")
+    const userId: number = req.userId;
+    const ticketTypeId: number = req.body;
+    const ticket = await ticketsService.createTicket(userId, ticketTypeId);
+    res.status(httpStatus.CREATED).send(ticket);
 }

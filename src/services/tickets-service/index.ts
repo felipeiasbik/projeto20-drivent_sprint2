@@ -11,7 +11,7 @@ async function getTickets(userId: number){
     if (!ticket){
         throw {
             name: "NotFoundError",
-            message: "Enrollment Not Found"
+            message: "Enrollment Not Found!"
         }
     }
     return ticket;

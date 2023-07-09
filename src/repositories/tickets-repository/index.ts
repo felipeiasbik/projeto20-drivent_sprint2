@@ -18,16 +18,16 @@ async function getTickets(enrollmentId: number){
 async function createTicket(enrollmentId: number, ticketTypeId: number){
     return await prisma.ticket.create({
         data: {
-            status: "RESERVED",
-            enrollmentId,
             ticketTypeId,
-            updatedAt: new Date(Date.now())
-        }
+            enrollmentId,
+            status: "RESERVED",
+            updatedAt: new Date(Date.now()),
+        },
     });
 }
 
 const ticketsRespository = {
-    getTicketsTypes, getTickets, createTicket
+    getTicketsTypes, getTickets, createTicket,
 }
 
 export default ticketsRespository;

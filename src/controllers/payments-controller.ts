@@ -4,9 +4,10 @@ import { AuthenticatedRequest } from '@/middlewares';
 import paymentsService from '../services/payments-service/index';
 
 export async function getPayments(req: AuthenticatedRequest, res: Response){
-    const ticketId = Number(req.query.ticketId);
+    const {ticketId}: {ticketId?: string} = req.query;
+    console.log(`AQUI ${ticketId}`)
     const {userId} = req;
-    const paymentTicket = await paymentsService.getPayments(ticketId, userId);
+    const paymentTicket = await paymentsService.getPayments(Number(ticketId), userId);
     res.status(httpStatus.OK).send(paymentTicket);
 }
 
